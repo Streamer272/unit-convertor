@@ -58,6 +58,28 @@
         </child>
 
         <child>
+          <object class="GtkBox" id="units_modal_box">
+            <property name="orientation">horizontal</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="visible">false</property>
+
+            <child>
+              <object class="GtkDropDown" id="units_modal_dropdown">
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item>Temperature</item>
+                      <item>Mass</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+
+        <child>
           <object class="GtkBox" id="convert_box">
             <property name="orientation">horizontal</property>
             <property name="halign">center</property>
