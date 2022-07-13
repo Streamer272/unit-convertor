@@ -22,69 +22,39 @@ namespace UnitConvertor {
         [GtkChild]
         private unowned Gtk.Entry convert_entry;
         [GtkChild]
-        private unowned Gtk.DropDown dropdown_from;
-        [GtkChild]
-        private unowned Gtk.DropDown dropdown_to;
-        [GtkChild]
         private unowned Gtk.Button convert_button;
+
+        [GtkChild]
+        private unowned Gtk.DropDown temp_dropdown_from;
+        [GtkChild]
+        private unowned Gtk.DropDown temp_dropdown_to;
+    
         [GtkChild]
         private unowned Gtk.Box answer_box;
         [GtkChild]
         private unowned Gtk.Label answer_label;
 
+        private Convertor[] convertors;
+        private ushort convertor_index;
+
         public Window(Gtk.Application app) {
             Object(application: app);
-            dropdown_to.set("selected", 1);
             convert_entry.activate.connect(convert);
             convert_button.clicked.connect(convert);
+
+            convertors = new Convertor[1];
+            convertors[0] = new TempConvertor();
+            convertors[0].init(temp_dropdown_from, temp_dropdown_to);
+
+            convertor_index = 0;
         }
 
         public void convert() {
             answer_box.set("visible", true);
 
-            uint from = dropdown_from.get_selected();
-            uint to = dropdown_to.get_selected();
-
             float convert_value = float.parse(convert_entry.get_text());
-
-            string format(float number) {
-                return "%.1f".printf(number);
-            }
-
-            if (from == to) {
-                answer_label.set("label", format(convert_value));
-                return;
-            }
-            else if (from == 0) {
-                if (to == 1) {
-                    float fahrenheit = convert_value * 9 / 5 + 32;
-                    answer_label.set("label", format(fahrenheit));
-                }
-                else if (to == 2) {
-                    float kelvin = convert_value + 273.15f;
-                    answer_label.set("label", format(kelvin));
-                }
-            }
-            else if (from == 1) {
-                if (to == 0) {
-                    float celsius = (convert_value - 32) * 5 / 9;
-                    answer_label.set("label", format(celsius));
-                }
-                else if (to == 2) {
-                    float kelvin = (convert_value - 32) * 5 / 9 + 273.15f;
-                    answer_label.set("label", format(kelvin));
-                }
-            }
-            else if (from == 2) {
-                if (to == 0) {
-                    float celsius = convert_value - 273.15f;
-                    answer_label.set("label", format(celsius));
-                }
-                else if (to == 1) {
-                    float fahrenheit = (convert_value - 273.15f) * 9 / 5 + 32;
-                    answer_label.set("label", format(fahrenheit));
-                }
-            }
+            string result = convertors[convertor_index].convert(convert_value);
+            answer_label.set("label", result);
         }
     }
 }

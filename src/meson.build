@@ -2,6 +2,7 @@ unit_convertor_sources = [
   'main.vala',
   'window.vala',
   'application.vala',
+  'convertor.vala',
 ]
 
 unit_convertor_deps = [

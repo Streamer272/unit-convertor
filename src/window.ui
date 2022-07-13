@@ -48,7 +48,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkDropDown" id="dropdown_from">
+              <object class="GtkDropDown" id="temp_dropdown_from">
                 <property name="model">
                   <object class="GtkStringList">
                     <items>
@@ -67,7 +67,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkDropDown" id="dropdown_to">
+              <object class="GtkDropDown" id="temp_dropdown_to">
                 <property name="model">
                   <object class="GtkStringList">
                     <items>
