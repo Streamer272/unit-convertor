@@ -104,6 +104,7 @@ namespace UnitConvertor {
         public void back_to_change_units() {
             units_box.show();
             convert_box.hide();
+            answer_box.hide();
         }
 
         public void hide_answer_box() {

@@ -61,29 +61,116 @@ namespace UnitConvertor {
             if (from == to) {
                 return format(convert_value);
             }
-            else if (from == 0) {
-                if (to == 1) {
+            
+            switch (from) {
+            case 0:
+                switch (to) {
+                case 1:
                     return format(convert_value * 9 / 5 + 32);
-                }
-                else if (to == 2) {
+                case 2:
                     return format(convert_value + 273.15f);
                 }
-            }
-            else if (from == 1) {
-                if (to == 0) {
+                break;
+            case 1:
+                switch (to) {
+                case 0:
                     return format((convert_value - 32) * 5 / 9);
-                }
-                else if (to == 2) {
+                case 2:
                     return format((convert_value - 32) * 5 / 9 + 273.15f);
                 }
-            }
-            else if (from == 2) {
-                if (to == 0) {
+                break;
+            case 2:
+                switch (to) {
+                case 0:
                     return format(convert_value - 273.15f);
-                }
-                else if (to == 1) {
+                case 1:
                     return format((convert_value - 273.15f) * 9 / 5 + 32);
                 }
+                break;
+            }
+
+            return "";
+        }
+    }
+
+    public class MassConvertor : Convertor {
+        public override string convert(float convert_value) {
+            uint from = get_from();
+            uint to = get_to();
+
+            /*
+             * 0 = Grams
+             * 1 = Kilograms
+             * 2 = Tons
+             * 3 = Ounces
+             * 4 = Pounds
+             */
+
+            if (from == to) {
+                return format(convert_value);
+            }
+            
+            switch (from) {
+            case 0:
+                switch (to) {
+                case 1:
+                    return format(convert_value / 1000);
+                case 2:
+                    return format(convert_value / 1000000);
+                case 3:
+                    return format(convert_value / 28.34952f);
+                case 4:
+                    return format(convert_value / 453.59237f);
+                }
+                break;
+            case 1:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 1000);
+                case 2:
+                    return format(convert_value / 1000);
+                case 3:
+                    return format(convert_value * 35.27396f);
+                case 4:
+                    return format(convert_value * 2.20462f);
+                }
+                break;
+            case 2:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 1000000);
+                case 1:
+                    return format(convert_value * 1000);
+                case 3:
+                    return format(convert_value * 35273.96195f);
+                case 4:
+                    return format(convert_value * 2204.62262f);
+                }
+                break;
+            case 3:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 28.34952f);
+                case 1:
+                    return format(convert_value / 35.27396f);
+                case 2:
+                    return format(convert_value / 35273.96195f);
+                case 4:
+                    return format(convert_value / 16);
+                }
+                break;
+            case 4:
+                switch (to) {
+                case 0:
+                    return format(convert_value / 2.20462f);
+                case 1:
+                    return format(convert_value / 2.20462f);
+                case 2:
+                    return format(convert_value / 2204.62262f);
+                case 3:
+                    return format(convert_value * 16);
+                }
+                break;
             }
 
             return "";
