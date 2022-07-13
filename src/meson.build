@@ -6,6 +6,7 @@ unit_convertor_sources = [
 
 unit_convertor_deps = [
   dependency('gtk4'),
+  dependency('libadwaita-1')
 ]
 
 gnome = import('gnome')

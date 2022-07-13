@@ -2,8 +2,10 @@
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="UnitConvertorWindow" parent="GtkApplicationWindow">
-    <property name="default-width">600</property>
+    <property name="title">UnitConvertor</property>
+    <property name="default-width">400</property>
     <property name="default-height">300</property>
+
     <child type="titlebar">
       <object class="GtkHeaderBar" id="header_bar">
         <child type="end">
@@ -14,13 +16,98 @@
         </child>
       </object>
     </child>
+
     <child>
-      <object class="GtkLabel" id="label">
-        <property name="label">Hello, World!</property>
-        <attributes>
-          <attribute name="weight" value="bold"/>
-          <attribute name="scale" value="2"/>
-        </attributes>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <property name="spacing">5</property>
+
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">horizontal</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="spacing">6</property>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Convert</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkEntry" id="convert_value">
+                <property name="placeholder-text">Enter a value</property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="label">from</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkDropDown" id="dropdown_from">
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Celsius</item>
+                      <item translatable="yes">Farenheit</item>
+                      <item translatable="yes">Kelvin</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="label">to</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkDropDown" id="dropdown_to">
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item translatable="yes">Celsius</item>
+                      <item translatable="yes">Farenheit</item>
+                      <item translatable="yes">Kelvin</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+
+            <child>
+              <object class="GtkButton" id="convert_button">
+                <property name="label">Ok</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        
+        <child>
+          <object class="GtkBox" id="answer_box">
+            <property name="orientation">horizontal</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="spacing">6</property>
+            <property name="visible">false</property>
+
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Your answer is:</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="answer_label">
+                <property name="label">BUG</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </template>
@@ -36,7 +123,7 @@
         <attribute name="action">win.show-help-overlay</attribute>
       </item>
       <item>
-        <attribute name="label" translatable="yes">_About unit-convertor</attribute>
+        <attribute name="label" translatable="yes">_About UnitConvertor</attribute>
         <attribute name="action">app.about</attribute>
       </item>
     </section>

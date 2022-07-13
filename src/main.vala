@@ -17,6 +17,6 @@
  */
 
 int main (string[] args) {
-    var app = new UnitConvertor.Application ();
-    return app.run (args);
+    var app = new UnitConvertor.Application();
+    return app.run(args);
 }

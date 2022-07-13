@@ -17,9 +17,9 @@
  */
 
 namespace UnitConvertor {
-    public class Application : Gtk.Application {
-        public Application () {
-            Object (application_id: "com.streamer272.UnitConvertor", flags: ApplicationFlags.FLAGS_NONE);
+    public class Application : Adw.Application {
+        public Application() {
+            Object(application_id: "com.streamer272.UnitConvertor", flags: ApplicationFlags.FLAGS_NONE);
         }
 
         construct {
@@ -28,29 +28,29 @@ namespace UnitConvertor {
                 { "preferences", this.on_preferences_action },
                 { "quit", this.quit }
             };
-            this.add_action_entries (action_entries, this);
-            this.set_accels_for_action ("app.quit", {"<primary>q"});
+            this.add_action_entries(action_entries, this);
+            this.set_accels_for_action("app.quit", {"<primary>q"});
         }
 
-        public override void activate () {
-            base.activate ();
+        public override void activate() {
+            base.activate();
             var win = this.active_window;
             if (win == null) {
                 win = new UnitConvertor.Window (this);
             }
-            win.present ();
+            win.present();
         }
 
-        private void on_about_action () {
+        private void on_about_action() {
             string[] authors = { "Daniel Svitan" };
-            Gtk.show_about_dialog (this.active_window,
-                                   "program-name", "unit-convertor",
+            Gtk.show_about_dialog(this.active_window,
+                                   "program-name", "UnitConvertor",
                                    "authors", authors,
                                    "version", "0.1.0");
         }
 
-        private void on_preferences_action () {
-            message ("app.preferences action activated");
+        private void on_preferences_action() {
+            message("app.preferences action activated");
         }
     }
 }

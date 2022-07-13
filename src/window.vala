@@ -17,13 +17,30 @@
  */
 
 namespace UnitConvertor {
-    [GtkTemplate (ui = "/com/streamer272/UnitConvertor/window.ui")]
+    [GtkTemplate(ui = "/com/streamer272/UnitConvertor/window.ui")]
     public class Window : Gtk.ApplicationWindow {
         [GtkChild]
-        private unowned Gtk.Label label;
+        private unowned Gtk.Entry convert_value;
+        [GtkChild]
+        private unowned Gtk.DropDown dropdown_from;
+        [GtkChild]
+        private unowned Gtk.DropDown dropdown_to;
+        [GtkChild]
+        private unowned Gtk.Button convert_button;
+        [GtkChild]
+        private unowned Gtk.Box answer_box;
+        [GtkChild]
+        private unowned Gtk.Label answer_label;
 
-        public Window (Gtk.Application app) {
-            Object (application: app);
+        public Window(Gtk.Application app) {
+            Object(application: app);
+            this.dropdown_to.set("selected", 1);
+            this.convert_value.activate.connect(this.convert);
+            this.convert_button.clicked.connect(this.convert);
+        }
+
+        public void convert() {
+            message("converting!!");
         }
     }
 }
