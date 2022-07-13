@@ -53,9 +53,9 @@ namespace UnitConvertor {
             uint to = get_to();
 
             /*
-             * 0 - Celsius
-             * 1 - Fahrenheit
-             * 2 - Kelvin
+             * 0 = Celsius
+             * 1 = Fahrenheit
+             * 2 = Kelvin
              */
 
             if (from == to) {
