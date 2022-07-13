@@ -31,6 +31,8 @@ namespace UnitConvertor {
         [GtkChild]
         private unowned Gtk.Entry convert_entry;
         [GtkChild]
+        private unowned Gtk.Button swap_button;
+        [GtkChild]
         private unowned Gtk.Button convert_button;
 
         [GtkChild]
@@ -58,14 +60,17 @@ namespace UnitConvertor {
             units_button.clicked.connect(change_units);
             convert_entry.activate.connect(convert);
             convert_entry.changed.connect(hide_answer_box);
+            swap_button.clicked.connect(swap);
             convert_button.clicked.connect(convert);
             answer_copy_button.clicked.connect(copy);
 
             temp_dropdown_from.notify["selected"].connect(hide_answer_box);
 
-            convertors = new Convertor[1];
+            convertors = new Convertor[2];
             convertors[0] = new TempConvertor();
             convertors[0].init(temp_dropdown_from, temp_dropdown_to);
+            convertors[1] = new MassConvertor();
+            convertors[1].init(mass_dropdown_from, mass_dropdown_to);
 
             convertor_index = 0;
         }
@@ -111,6 +116,10 @@ namespace UnitConvertor {
             if (answer_box.is_visible()) {
                 answer_box.hide();
             }
+        }
+
+        public void swap() {
+            convertors[convertor_index].swap();
         }
 
         public void convert() {

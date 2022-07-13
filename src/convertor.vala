@@ -33,6 +33,12 @@ namespace UnitConvertor {
             dropdown_to.set("selected", 1);
         }
 
+        public void swap() {
+            uint temp = dropdown_from.get_selected();
+            dropdown_from.set("selected", dropdown_to.get_selected());
+            dropdown_to.set("selected", temp);
+        }
+
         protected uint get_from() {
             return dropdown_from.get_selected();
         }
@@ -109,7 +115,7 @@ namespace UnitConvertor {
             if (from == to) {
                 return format(convert_value);
             }
-            
+
             switch (from) {
             case 0:
                 switch (to) {

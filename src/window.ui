@@ -149,6 +149,14 @@
             </child>
 
             <child>
+              <object class="GtkLabel" />
+            </child>
+            <child>
+              <object class="GtkButton" id="swap_button">
+                <property name="label">Swap</property>
+              </object>
+            </child>
+            <child>
               <object class="GtkButton" id="convert_button">
                 <property name="label">Ok</property>
               </object>
@@ -185,9 +193,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkLabel">
-                <property name="label"></property>
-              </object>
+              <object class="GtkLabel" />
             </child>
             <child>
               <object class="GtkButton" id="answer_copy_button">
