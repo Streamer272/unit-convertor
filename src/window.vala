@@ -36,9 +36,9 @@ namespace UnitConvertor {
         [GtkChild]
         private unowned Gtk.DropDown temp_dropdown_from;
         [GtkChild]
-        private unowned Gtk.DropDown mass_dropdown_from;
-        [GtkChild]
         private unowned Gtk.DropDown temp_dropdown_to;
+        [GtkChild]
+        private unowned Gtk.DropDown mass_dropdown_from;
         [GtkChild]
         private unowned Gtk.DropDown mass_dropdown_to;
     
@@ -57,8 +57,11 @@ namespace UnitConvertor {
 
             units_button.clicked.connect(change_units);
             convert_entry.activate.connect(convert);
+            convert_entry.changed.connect(hide_answer_box);
             convert_button.clicked.connect(convert);
             answer_copy_button.clicked.connect(copy);
+
+            temp_dropdown_from.notify["selected"].connect(hide_answer_box);
 
             convertors = new Convertor[1];
             convertors[0] = new TempConvertor();
@@ -75,6 +78,7 @@ namespace UnitConvertor {
 
             units_box.hide();
             convert_box.show();
+            answer_box.hide();
 
             convertor_index = units_dropdown.get_selected();
             switch (convertor_index) {
@@ -100,6 +104,12 @@ namespace UnitConvertor {
         public void back_to_change_units() {
             units_box.show();
             convert_box.hide();
+        }
+
+        public void hide_answer_box() {
+            if (answer_box.is_visible()) {
+                answer_box.hide();
+            }
         }
 
         public void convert() {
