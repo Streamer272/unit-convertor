@@ -22,7 +22,7 @@
         <property name="orientation">vertical</property>
         <property name="halign">center</property>
         <property name="valign">center</property>
-        <property name="spacing">5</property>
+        <property name="spacing">20</property>
 
         <child>
           <object class="GtkBox">
@@ -37,7 +37,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkEntry" id="convert_value">
+              <object class="GtkEntry" id="convert_entry">
                 <property name="placeholder-text">Enter a value</property>
               </object>
             </child>
@@ -53,7 +53,7 @@
                   <object class="GtkStringList">
                     <items>
                       <item translatable="yes">Celsius</item>
-                      <item translatable="yes">Farenheit</item>
+                      <item translatable="yes">Fahrenheit</item>
                       <item translatable="yes">Kelvin</item>
                     </items>
                   </object>
@@ -72,7 +72,7 @@
                   <object class="GtkStringList">
                     <items>
                       <item translatable="yes">Celsius</item>
-                      <item translatable="yes">Farenheit</item>
+                      <item translatable="yes">Fahrenheit</item>
                       <item translatable="yes">Kelvin</item>
                     </items>
                   </object>
@@ -93,17 +93,26 @@
             <property name="orientation">horizontal</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="spacing">6</property>
+            <property name="spacing">4</property>
             <property name="visible">false</property>
 
             <child>
               <object class="GtkLabel">
                 <property name="label">Your answer is:</property>
+
+                <attributes>
+                  <attribute name="scale" value="1.2" />
+                </attributes>
               </object>
             </child>
             <child>
               <object class="GtkLabel" id="answer_label">
-                <property name="label">BUG</property>
+                <property name="label"></property>
+                <property name="selectable">true</property>
+
+                <attributes>
+                  <attribute name="scale" value="1.25" />
+                </attributes>
               </object>
             </child>
           </object>
