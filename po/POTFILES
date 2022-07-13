@@ -1,0 +1,7 @@
+data/com.streamer272.UnitConvertor.desktop.in
+data/com.streamer272.UnitConvertor.appdata.xml.in
+data/com.streamer272.UnitConvertor.gschema.xml
+src/window.ui
+src/main.vala
+src/window.vala
+

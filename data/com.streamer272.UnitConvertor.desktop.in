@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=unit-convertor
+Exec=unit-convertor
+Icon=com.streamer272.UnitConvertor
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true
