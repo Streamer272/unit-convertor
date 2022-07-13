@@ -69,13 +69,15 @@ namespace UnitConvertor {
             mass_dropdown_from.notify["selected"].connect(hide_answer_box);
             mass_dropdown_to.notify["selected"].connect(hide_answer_box);
 
-            ActionEntry[] action_entries = {
-                { "win.swap", swap },
-                { "win.convert", convert }
-            };
-            add_action_entries(action_entries, app);
-            app.set_accels_for_action("win.swap", {"<primary>w"});
-            app.set_accels_for_action("win.convert", {"<primary>Return"});
+            SimpleAction swap_action = new SimpleAction("swap", null);
+            swap_action.activate.connect(swap);
+            app.add_action(swap_action);
+            app.set_accels_for_action("app.swap", {"<primary>w"});
+
+            SimpleAction convert_action = new SimpleAction("convert", null);
+            convert_action.activate.connect(convert);
+            app.add_action(convert_action);
+            app.set_accels_for_action("app.convert", {"<primary>Return"});
 
             message("Accels for win.swap are %d long (%s)", app.get_accels_for_action("win.swap").length, app.get_accels_for_action("win.swap")[0] ?? "fuck");
 
@@ -131,12 +133,10 @@ namespace UnitConvertor {
         }
 
         public void swap() {
-            message("swapping");
             convertors[convertor_index].swap();
         }
 
         public void convert() {
-            message("converting");
             answer_box.set("visible", true);
 
             float convert_value = float.parse(convert_entry.get_text());

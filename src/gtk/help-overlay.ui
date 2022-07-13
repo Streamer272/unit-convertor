@@ -11,6 +11,7 @@
         <child>
           <object class="GtkShortcutsGroup">
             <property name="title" translatable="yes" context="shortcut window">General</property>
+
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Show Shortcuts</property>
@@ -19,26 +20,20 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Quit</property>
-                <property name="action-name">app.quit</property>
-              </object>
-            </child>
-          </object>
-        </child>
-
-        <child>
-          <object class="GtkShortcutsGroup">
-            <property name="title" context="shortcut window">Window</property>
-            <child>
-              <object class="GtkShortcutsShortcut">
                 <property name="title" context="shortcut window">Swap</property>
-                <property name="action-name">win.swap</property>
+                <property name="action-name">app.swap</property>
               </object>
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" context="shortcut window">Convert</property>
-                <property name="action-name">win.convert</property>
+                <property name="action-name">app.convert</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Quit</property>
+                <property name="action-name">app.quit</property>
               </object>
             </child>
           </object>
