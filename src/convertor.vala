@@ -26,11 +26,12 @@ namespace UnitConvertor {
             dropdown_to = null;
         }
 
-        public void init(Gtk.DropDown dropdown_from, Gtk.DropDown dropdown_to) {
+        public Convertor init(Gtk.DropDown dropdown_from, Gtk.DropDown dropdown_to) {
             this.dropdown_from = dropdown_from;
             this.dropdown_to = dropdown_to;
             dropdown_from.set("selected", 0);
             dropdown_to.set("selected", 1);
+            return this;
         }
 
         public void swap() {
