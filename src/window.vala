@@ -17,18 +17,17 @@
  */
 
 namespace UnitConvertor {
-    [GtkTemplate(ui = "/com/streamer272/UnitConvertor/window.ui")]
+    [GtkTemplate(ui = "/com/streamer272/UnitConvertor/gtk/window.ui")]
     public class Window : Gtk.ApplicationWindow {
+        [GtkChild]
+        private unowned Gtk.Button go_home_button;
+
         [GtkChild]
         private unowned Gtk.Box units_box;
         [GtkChild]
         private unowned Gtk.DropDown units_dropdown;
         [GtkChild]
         private unowned Gtk.Button units_button;
-        [GtkChild]
-        private unowned Gtk.Box units_modal_box;
-        [GtkChild]
-        private unowned Gtk.DropDown units_modal_dropdown;
 
         [GtkChild]
         private unowned Gtk.Box convert_box;
@@ -61,8 +60,8 @@ namespace UnitConvertor {
         public Window(Gtk.Application app) {
             Object(application: app);
 
-            units_button.clicked.connect(() => change_units(units_dropdown.get_selected()));
-            units_modal_dropdown.notify["selected"].connect(() => change_units(units_modal_dropdown.get_selected()));
+            go_home_button.clicked.connect(back_to_choose_units);
+            units_button.clicked.connect(change_units);
             convert_entry.activate.connect(convert);
             convert_entry.changed.connect(hide_answer_box);
             swap_button.clicked.connect(swap);
@@ -89,31 +88,30 @@ namespace UnitConvertor {
             app.add_action(back_action);
             app.set_accels_for_action("app.back", {"<primary>Escape"});
 
-            message("Accels for win.swap are %d long (%s)", app.get_accels_for_action("win.swap").length, app.get_accels_for_action("win.swap")[0] ?? "fuck");
+            SimpleAction copy_action = new SimpleAction("copy", null);
+            copy_action.activate.connect(copy);
+            app.add_action(copy_action);
+            app.set_accels_for_action("app.copy", {"<primary>x"});
 
             convertors = {
                 new TempConvertor().init(temp_dropdown_from, temp_dropdown_to),
                 new MassConvertor().init(mass_dropdown_from, mass_dropdown_to)
             };
-
             convertor_index = 0;
         }
 
-        public void change_units(uint selected) {
+        public void change_units() {
             /*
              * 0 = Temperature
              * 1 = Mass
              */
 
+            go_home_button.show();
             units_box.hide();
-            units_modal_box.show();
             convert_box.show();
             answer_box.hide();
 
-            units_dropdown.set("selected", selected);
-            units_modal_dropdown.set("selected", selected);
-
-            convertor_index = selected;
+            convertor_index = units_dropdown.get_selected();
             switch (convertor_index) {
             case 0:
                 temp_dropdown_from.show();
@@ -127,16 +125,12 @@ namespace UnitConvertor {
                 mass_dropdown_from.show();
                 mass_dropdown_to.show();
                 break;
-            default:
-                units_box.show();
-                convert_box.hide();
-                break;
             }
         }
 
         public void back_to_choose_units() {
+            go_home_button.hide();
             units_box.show();
-            units_modal_box.hide();
             convert_box.hide();
             answer_box.hide();
         }

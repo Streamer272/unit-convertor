@@ -32,6 +32,12 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="title" context="shortcut window">Copy result</property>
+                <property name="action-name">app.copy</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="title" context="shortcut window">Back to choose units</property>
                 <property name="action-name">app.back</property>
               </object>

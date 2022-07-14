@@ -18,8 +18,8 @@
 
 namespace UnitConvertor {
     public abstract class Convertor : Object {
-        private unowned Gtk.DropDown dropdown_from;
-        private unowned Gtk.DropDown dropdown_to;
+        private unowned Gtk.DropDown? dropdown_from;
+        private unowned Gtk.DropDown? dropdown_to;
 
         construct {
             dropdown_from = null;

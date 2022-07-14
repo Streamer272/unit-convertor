@@ -36,7 +36,7 @@ namespace UnitConvertor {
             base.activate();
             var win = this.active_window;
             if (win == null) {
-                win = new UnitConvertor.Window (this);
+                win = new UnitConvertor.Window(this);
             }
             win.present();
         }
