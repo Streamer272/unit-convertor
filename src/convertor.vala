@@ -43,6 +43,16 @@ namespace UnitConvertor {
             dropdown_to.set("selected", temp);
         }
 
+        public void show() {
+            dropdown_from.show();
+            dropdown_to.show();
+        }
+
+        public void hide() {
+            dropdown_from.hide();
+            dropdown_to.hide();
+        }
+
         protected uint get_from() {
             return dropdown_from.get_selected();
         }
@@ -254,6 +264,70 @@ namespace UnitConvertor {
                     return format(convert_value * 1093.61329f);
                 case 6:
                     return format(convert_value / 1.60934f);
+                }
+                break;
+            case 3:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 2.54f);
+                case 1:
+                    return format(convert_value * 2540);
+                case 2:
+                    return format(convert_value * 2540 * THOUSAND);
+                case 4:
+                    return format(convert_value / 12);
+                case 5:
+                    return format(convert_value / 36);
+                case 6:
+                    return format(convert_value / 63360);
+                }
+                break;
+            case 4:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 30.48037f);
+                case 1:
+                    return format(convert_value / 3.28083f);
+                case 2:
+                    return format(convert_value / 3280.83989f);
+                case 3:
+                    return format(convert_value * 12);
+                case 5:
+                    return format(convert_value / 3);
+                case 6:
+                    return format(convert_value / 5280);
+                }
+                break;
+            case 5:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 91.44f);
+                case 1:
+                    return format(convert_value / 1.09361f);
+                case 2:
+                    return format(convert_value / 1093.61329f);
+                case 3:
+                    return format(convert_value * 36);
+                case 4:
+                    return format(convert_value * 3);
+                case 6:
+                    return format(convert_value / 1760);
+                }
+                break;
+            case 6:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 160934.4f);
+                case 1:
+                    return format(convert_value * 1609.344f);
+                case 2:
+                    return format(convert_value * 1.60934f);
+                case 3:
+                    return format(convert_value * 63360);
+                case 4:
+                    return format(convert_value * 5280);
+                case 5:
+                    return format(convert_value * 1760);
                 }
                 break;
             }

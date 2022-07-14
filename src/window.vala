@@ -46,6 +46,10 @@ namespace UnitConvertor {
         private unowned Gtk.DropDown mass_dropdown_from;
         [GtkChild]
         private unowned Gtk.DropDown mass_dropdown_to;
+        [GtkChild]
+        private unowned Gtk.DropDown length_dropdown_from;
+        [GtkChild]
+        private unowned Gtk.DropDown length_dropdown_to;
     
         [GtkChild]
         private unowned Gtk.Box answer_box;
@@ -95,7 +99,8 @@ namespace UnitConvertor {
 
             convertors = {
                 new TempConvertor().init(temp_dropdown_from, temp_dropdown_to),
-                new MassConvertor().init(mass_dropdown_from, mass_dropdown_to)
+                new MassConvertor().init(mass_dropdown_from, mass_dropdown_to),
+                new LengthConvertor().init(length_dropdown_from, length_dropdown_to)
             };
             convertor_index = 0;
         }
@@ -104,6 +109,7 @@ namespace UnitConvertor {
             /*
              * 0 = Temperature
              * 1 = Mass
+             * 2 = Length
              */
 
             go_home_button.show();
@@ -112,20 +118,10 @@ namespace UnitConvertor {
             answer_box.hide();
 
             convertor_index = units_dropdown.get_selected();
-            switch (convertor_index) {
-            case 0:
-                temp_dropdown_from.show();
-                temp_dropdown_to.show();
-                mass_dropdown_from.hide();
-                mass_dropdown_to.hide();
-                break;
-            case 1:
-                temp_dropdown_from.hide();
-                temp_dropdown_to.hide();
-                mass_dropdown_from.show();
-                mass_dropdown_to.show();
-                break;
+            for (int i = 0; i < convertors.length; i++) {
+                convertors[i].hide();
             }
+            convertors[convertor_index].show();
         }
 
         public void back_to_choose_units() {

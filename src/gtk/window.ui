@@ -49,6 +49,7 @@
                     <items>
                       <item>Temperature</item>
                       <item>Mass</item>
+                      <item>Length</item>
                     </items>
                   </object>
                 </property>
@@ -117,7 +118,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkDropDowwn" id="length_dropdown_from">
+              <object class="GtkDropDown" id="length_dropdown_from">
                 <property name="visible">false</property>
                 <property name="model">
                   <object class="GtkStringList">
@@ -171,7 +172,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkDropDowwn" id="length_dropdown_to">
+              <object class="GtkDropDown" id="length_dropdown_to">
                 <property name="visible">false</property>
                 <property name="model">
                   <object class="GtkStringList">
