@@ -116,6 +116,24 @@
                 </property>
               </object>
             </child>
+            <child>
+              <object class="GtkDropDowwn" id="length_dropdown_from">
+                <property name="visible">false</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item>Centimeters</item>
+                      <item>Meters</item>
+                      <item>Kilometers</item>
+                      <item>Inches</item>
+                      <item>Feet</item>
+                      <item>Yards</item>
+                      <item>Miles</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
 
             <child>
               <object class="GtkLabel">
@@ -147,6 +165,24 @@
                       <item>Tons</item>
                       <item>Ounces</item>
                       <item>Pounds</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkDropDowwn" id="length_dropdown_to">
+                <property name="visible">false</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item>Centimeters</item>
+                      <item>Meters</item>
+                      <item>Kilometers</item>
+                      <item>Inches</item>
+                      <item>Feet</item>
+                      <item>Yards</item>
+                      <item>Miles</item>
                     </items>
                   </object>
                 </property>

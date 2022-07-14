@@ -17,6 +17,9 @@
  */
 
 namespace UnitConvertor {
+    const int THOUSAND = 1000;
+    const int MILLION = 1000000;
+
     public abstract class Convertor : Object {
         private unowned Gtk.DropDown? dropdown_from;
         private unowned Gtk.DropDown? dropdown_to;
@@ -121,9 +124,9 @@ namespace UnitConvertor {
             case 0:
                 switch (to) {
                 case 1:
-                    return format(convert_value / 1000);
+                    return format(convert_value / THOUSAND);
                 case 2:
-                    return format(convert_value / 1000000);
+                    return format(convert_value / MILLION);
                 case 3:
                     return format(convert_value / 28.34952f);
                 case 4:
@@ -133,9 +136,9 @@ namespace UnitConvertor {
             case 1:
                 switch (to) {
                 case 0:
-                    return format(convert_value * 1000);
+                    return format(convert_value * THOUSAND);
                 case 2:
-                    return format(convert_value / 1000);
+                    return format(convert_value / THOUSAND);
                 case 3:
                     return format(convert_value * 35.27396f);
                 case 4:
@@ -145,9 +148,9 @@ namespace UnitConvertor {
             case 2:
                 switch (to) {
                 case 0:
-                    return format(convert_value * 1000000);
+                    return format(convert_value * MILLION);
                 case 1:
-                    return format(convert_value * 1000);
+                    return format(convert_value * THOUSAND);
                 case 3:
                     return format(convert_value * 35273.96195f);
                 case 4:
@@ -176,6 +179,81 @@ namespace UnitConvertor {
                     return format(convert_value / 2204.62262f);
                 case 3:
                     return format(convert_value * 16);
+                }
+                break;
+            }
+
+            return "";
+        }
+    }
+
+
+    public class LengthConvertor : Convertor {
+        public override string convert(float convert_value) {
+            uint from = get_from();
+            uint to = get_to();
+
+            /*
+             * 0 = Centimeters
+             * 1 = Meters
+             * 2 = Kilometers
+             * 3 = Inches
+             * 4 = Feet
+             * 5 = Yards
+             * 6 = Miles
+             */
+
+            if (from == to) {
+                return format(convert_value);
+            }
+
+            switch (from) {
+            case 0:
+                switch (to) {
+                case 1:
+                    return format(convert_value / THOUSAND);
+                case 2:
+                    return format(convert_value / MILLION);
+                case 3:
+                    return format(convert_value / 2.54f);
+                case 4:
+                    return format(convert_value / 30.48037f);
+                case 5:
+                    return format(convert_value / 91.44f);
+                case 6:
+                    return format(convert_value / 160934.4f);
+                }
+                break;
+            case 1:
+                switch (to) {
+                case 0:
+                    return format(convert_value * THOUSAND);
+                case 2:
+                    return format(convert_value / THOUSAND);
+                case 3:
+                    return format(convert_value * 39.37007f);
+                case 4:
+                    return format(convert_value * 3.28083f);
+                case 5:
+                    return format(convert_value * 1.09361f);
+                case 6:
+                    return format(convert_value / 1609.344f);
+                }
+                break;
+            case 2:
+                switch (to) {
+                case 0:
+                    return format(convert_value * MILLION);
+                case 1:
+                    return format(convert_value * THOUSAND);
+                case 3:
+                    return format(convert_value * 39370.07874f);
+                case 4:
+                    return format(convert_value * 3280.83989f);
+                case 5:
+                    return format(convert_value * 1093.61329f);
+                case 6:
+                    return format(convert_value / 1.60934f);
                 }
                 break;
             }
