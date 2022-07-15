@@ -335,4 +335,67 @@ namespace UnitConvertor {
             return "";
         }
     }
+
+    public class VolumeConvertor : Convertor {
+        public override string convert(float convert_value) {
+            uint from = get_from();
+            uint to = get_to();
+
+            /*
+             * 0 = milliliter
+             * 1 = liter
+             * 2 = fluid ounce
+             * 3 = gallon
+             */
+
+            if (from == to) {
+                return format(convert_value);
+            }
+
+            switch (from) {
+            case 0:
+                switch (to) {
+                case 1:
+                    return format(convert_value / THOUSAND);
+                case 2:
+                    return format(convert_value / 29.57352f);
+                case 3:
+                    return format(convert_value / 3785.41178f);
+                }
+                break;
+            case 1:
+                switch (to) {
+                case 0:
+                    return format(convert_value * THOUSAND);
+                case 2:
+                    return format(convert_value * 33.81402f);
+                case 3:
+                    return format(convert_value / 3.78541f);
+                }
+                break;
+            case 2:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 29.57352f);
+                case 1:
+                    return format(convert_value / 33.81402f);
+                case 3:
+                    return format(convert_value / 128);
+                }
+                break;
+            case 3:
+                switch (to) {
+                case 0:
+                    return format(convert_value * 3785.41178f);
+                case 1:
+                    return format(convert_value * 3.78541f);
+                case 2:
+                    return format(convert_value * 128);
+                }
+                break;
+            }
+
+            return "";
+        }
+    }
 }

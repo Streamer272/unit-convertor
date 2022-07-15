@@ -50,6 +50,7 @@
                       <item>Temperature</item>
                       <item>Mass</item>
                       <item>Length</item>
+                      <item>Volume</item>
                     </items>
                   </object>
                 </property>
@@ -118,7 +119,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkDropDown" id="length_dropdown_from">
+              <object class="GtkDropDown" id="len_dropdown_from">
                 <property name="visible">false</property>
                 <property name="model">
                   <object class="GtkStringList">
@@ -130,6 +131,21 @@
                       <item>Feet</item>
                       <item>Yards</item>
                       <item>Miles</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkDropDown" id="vol_dropdown_from">
+                <property name="visible">false</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item>Milliliter</item>
+                      <item>Liter</item>
+                      <item>Fluid Ounce</item>
+                      <item>Gallon</item>
                     </items>
                   </object>
                 </property>
@@ -172,7 +188,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkDropDown" id="length_dropdown_to">
+              <object class="GtkDropDown" id="len_dropdown_to">
                 <property name="visible">false</property>
                 <property name="model">
                   <object class="GtkStringList">
@@ -184,6 +200,21 @@
                       <item>Feet</item>
                       <item>Yards</item>
                       <item>Miles</item>
+                    </items>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkDropDown" id="vol_dropdown_to">
+                <property name="visible">false</property>
+                <property name="model">
+                  <object class="GtkStringList">
+                    <items>
+                      <item>Milliliter</item>
+                      <item>Liter</item>
+                      <item>Fluid Ounce</item>
+                      <item>Gallon</item>
                     </items>
                   </object>
                 </property>

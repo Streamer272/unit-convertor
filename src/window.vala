@@ -47,10 +47,14 @@ namespace UnitConvertor {
         [GtkChild]
         private unowned Gtk.DropDown mass_dropdown_to;
         [GtkChild]
-        private unowned Gtk.DropDown length_dropdown_from;
+        private unowned Gtk.DropDown len_dropdown_from;
         [GtkChild]
-        private unowned Gtk.DropDown length_dropdown_to;
-    
+        private unowned Gtk.DropDown len_dropdown_to;
+        [GtkChild]
+        private unowned Gtk.DropDown vol_dropdown_from;
+        [GtkChild]
+        private unowned Gtk.DropDown vol_dropdown_to;
+
         [GtkChild]
         private unowned Gtk.Box answer_box;
         [GtkChild]
@@ -100,7 +104,8 @@ namespace UnitConvertor {
             convertors = {
                 new TempConvertor().init(temp_dropdown_from, temp_dropdown_to),
                 new MassConvertor().init(mass_dropdown_from, mass_dropdown_to),
-                new LengthConvertor().init(length_dropdown_from, length_dropdown_to)
+                new LengthConvertor().init(len_dropdown_from, len_dropdown_to),
+                new VolumeConvertor().init(vol_dropdown_from, vol_dropdown_to)
             };
             convertor_index = 0;
         }
