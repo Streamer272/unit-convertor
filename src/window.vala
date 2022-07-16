@@ -65,13 +65,15 @@ namespace UnitConvertor {
         private Convertor[] convertors;
         private uint convertor_index;
 
+        private string old_convert_entry_text = "0";
+
         public Window(Gtk.Application app) {
             Object(application: app);
 
             go_home_button.clicked.connect(back_to_choose_units);
             units_button.clicked.connect(change_units);
             convert_entry.activate.connect(convert);
-            convert_entry.changed.connect(hide_answer_box);
+            convert_entry.changed.connect(on_input_change);
             swap_button.clicked.connect(swap);
             convert_button.clicked.connect(convert);
             answer_copy_button.clicked.connect(copy);
@@ -127,6 +129,8 @@ namespace UnitConvertor {
                 convertors[i].hide();
             }
             convertors[convertor_index].show();
+
+            convert_entry.grab_focus();
         }
 
         public void back_to_choose_units() {
@@ -134,6 +138,23 @@ namespace UnitConvertor {
             units_box.show();
             convert_box.hide();
             answer_box.hide();
+            old_convert_entry_text = "0";
+            convert_entry.get_buffer().set("text", "".data);
+        }
+
+        public void on_input_change() {
+            hide_answer_box();
+
+            string current_text = convert_entry.get_text();
+            Regex regex = /[^\.0123456789]/i;
+            MatchInfo mi;
+            regex.match_all(current_text, 0, out mi);
+            if (mi.fetch_all().length > 0) {
+                convert_entry.set("text", old_convert_entry_text.data);
+            }
+            else {
+                old_convert_entry_text = current_text;
+            }
         }
 
         public void hide_answer_box() {
